@@ -56,7 +56,11 @@ class ProjectController extends Controller
             $validated['cover_image'] = $image_path;
         }
         //creiamo
+
+
         $project = Project::create($validated);
+
+
 
         if ($request->has('technologies')) {
             $project->technologies()->attach($validated['technologies']);
@@ -109,7 +113,7 @@ class ProjectController extends Controller
         if ($request->has('technologies')) {
             $project->technologies()->sync($validated['technologies']);
         } else {
-            $project->technologies()->synch($validated[]);
+            $project->technologies()->sync($validated[]);
         }
 
         $project->update($validated);
