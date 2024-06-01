@@ -71,13 +71,13 @@
                                         role="document">
                                         <div class="modal-content">
                                             <div class="modal-header">
-                                                <h5 class="modal-title" id="modalTitleId-{{ $project->id }}">
+                                                <h5 class="modal-title text-dark" id="modalTitleId-{{ $project->id }}">
                                                     Attention! Deleting: {{ $project->title }}
                                                 </h5>
                                                 <button type="button" class="btn-close" data-bs-dismiss="modal"
                                                     aria-label="Close"></button>
                                             </div>
-                                            <div class="modal-body">
+                                            <div class="modal-body  text-dark">
                                                 Attention! You are about to delete this record. The operation is DESTRUCTIVE
                                                 ❌❌❌
                                             </div>

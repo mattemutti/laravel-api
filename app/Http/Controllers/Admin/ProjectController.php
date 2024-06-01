@@ -116,7 +116,7 @@ class ProjectController extends Controller
 
         $project->update($validated);
 
-        return to_route('admin.projects.show', $project)->with('message', 'Project Update Sucessufully');
+        return to_route('admin.projects.index')->with('message', 'Project Update Sucessufully');
     }
 
     /**

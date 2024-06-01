@@ -49,9 +49,9 @@
                 <div class="collapse navbar-collapse" id="navbarSupportedContent">
                     <!-- Left Side Of Navbar -->
                     <ul class="navbar-nav me-auto">
-                        <li class="nav-item">
+                        {{-- <li class="nav-item">
                             <a class="nav-link text-danger" href="{{ url('/admin') }}">{{ __('Dashboard') }}</a>
-                        </li>
+                        </li> --}}
                         <li class="nav-item">
                             <a class="nav-link text-danger"
                                 href="{{ route('admin.projects.index') }}">{{ __('Projects') }}</a>
