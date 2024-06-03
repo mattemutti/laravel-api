@@ -16,4 +16,23 @@ class ProjectController extends Controller
             'projects' => $projects,
         ]);
     }
+
+    public function show($id)
+    {
+        $project = Project::with('user', 'technologies', 'types')->where('id', $id)->first();
+        if ($project) {
+            //retur the object
+            return response()->json([
+                'success' => true,
+                'response' => $project,
+            ]);
+
+        } else {
+            // 404
+            return response()->json([
+                'success' => false,
+                'response' => 'error 404',
+            ]);
+        }
+    }
 }
