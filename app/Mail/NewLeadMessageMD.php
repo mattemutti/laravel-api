@@ -17,9 +17,9 @@ class NewLeadMessageMD extends Mailable
     /**
      * Create a new message instance.
      */
-    public function __construct(public $lead)
+    public function __construct($_lead)
     {
-        //
+        this->lead = $_lead;
     }
 
     /**
@@ -29,7 +29,7 @@ class NewLeadMessageMD extends Mailable
     {
         return new Envelope(
             from: new Address('mattemutti@gmail.com', ' Matteo'),
-            subject: 'New Lead Message MD',
+            subject: 'Nuovo contatto',
         );
     }
 
