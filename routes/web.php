@@ -6,6 +6,7 @@ use App\Http\Controllers\Admin\TypeController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\Admin\TechnologyController;
 use Illuminate\Support\Facades\Route;
+use App\Http\Models\Lead;
 
 /*
 |--------------------------------------------------------------------------
@@ -41,6 +42,11 @@ Route::middleware(['auth', 'verified'])
 
     });
 
+Route::get('/mailable', function () {
+    $lead = Lead::find(1);
+
+    return new App\Mail\NewLeadMessageMD($lead);
+});
 
 Route::middleware('auth')->group(function () {
     Route::resource('projects', ProjectController::class)->parameters(['projects' => 'project:slug']);
