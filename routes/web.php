@@ -6,7 +6,7 @@ use App\Http\Controllers\Admin\TypeController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\Admin\TechnologyController;
 use Illuminate\Support\Facades\Route;
-use App\Http\Models\Lead;
+use App\Models\Lead;
 
 /*
 |--------------------------------------------------------------------------
@@ -43,6 +43,12 @@ Route::middleware(['auth', 'verified'])
     });
 
 Route::get('/mailable', function () {
+    // $lead = [
+    //     'name' => 'Matteo',
+    //     'email' => 'matte@matte.com',
+    //     'message' => 'messaggio per Matteo'
+    // ];
+
     $lead = Lead::find(1);
 
     return new App\Mail\NewLeadMessageMD($lead);

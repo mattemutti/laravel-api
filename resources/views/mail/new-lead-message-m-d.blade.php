@@ -1,14 +1,14 @@
 <x-mail::message>
     # Introduction
 
-    Sender: {{ $lead->name }}
+    Inviato da: {{ $lead['name'] }}
 
-    Email: {{ $lead->email }}
+    Email: {{ $lead['email'] }}
 
-    ## Message {{ lead->message }}
+    ## Message {{ $lead['message'] }}
 
-    <x-mail::button url="">
+    {{-- <x-mail::button url="">
         Button Text
-    </x-mail::button>
+    </x-mail::button> --}}
 
 </x-mail::message>
