@@ -13,13 +13,14 @@ use Illuminate\Queue\SerializesModels;
 class NewLeadMessageMD extends Mailable
 {
     use Queueable, SerializesModels;
+    public $lead;
 
     /**
      * Create a new message instance.
      */
     public function __construct($_lead)
     {
-        this->lead = $_lead;
+        $this->lead = $_lead;
     }
 
     /**
@@ -28,7 +29,7 @@ class NewLeadMessageMD extends Mailable
     public function envelope(): Envelope
     {
         return new Envelope(
-            from: new Address('mattemutti@gmail.com', ' Matteo'),
+            replyTo: $this->lead->address,
             subject: 'Nuovo contatto',
         );
     }

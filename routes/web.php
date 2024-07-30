@@ -43,11 +43,12 @@ Route::middleware(['auth', 'verified'])
     });
 
 Route::get('/mailable', function () {
-    // $lead = [
-    //     'name' => 'Matteo',
-    //     'email' => 'matte@matte.com',
-    //     'message' => 'messaggio per Matteo'
-    // ];
+
+    /*$lead = [
+        'name' => 'Matteo',
+        'email' => 'matte@matte.com',
+        'message' => 'messaggio per Matteo'
+    ];*/
 
     $lead = Lead::find(1);
 

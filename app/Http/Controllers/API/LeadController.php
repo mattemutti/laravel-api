@@ -1,57 +1,47 @@
 <?php
 
-namespace App\Http\Controllers\API;
+namespace App\Http\Controllers\Api;
 
 use App\Http\Controllers\Controller;
-use App\Mail\NewLeadMessageMD;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\Facades\Mail;
 use App\Models\Lead;
+use App\Mail\NewLeadMessageMD;
 
 class LeadController extends Controller
 {
-
-
     public function store(Request $request)
     {
+        $data = $request->all();
 
-        return response()->json([
-            'seccess' => true,
-            'data' => $request->all(),
-        ]);
-
-        // validate
-
+        // validiamo i dati "a mano" per poter gestire la risposta
         $validator = Validator::make($data, [
             'name' => 'required',
             'email' => 'required|email',
             'message' => 'required'
         ]);
 
-        // reutrn response json with error the validator fails
         if ($validator->fails()) {
             return response()->json([
                 'success' => false,
+                // la funzione errors() della classe Validator resituisce un array
+                // in cui la chiave è il campo soggetto a validazione
+                // e il valore è un array di messaggi di errore
                 'errors' => $validator->errors()
             ]);
         }
 
-        // create Lead
+        // salviamo a db i dati inseriti nel form di contatto
         $new_lead = new Lead();
+        $new_lead->fill($data);
+        $new_lead->save();
 
-
-        // send the email
-        Mail::to('mattemutti@gmail.com')->send(new NewLeadMessageMD($new_Lead));
-
-        // return the response
+        // inviamo la mail all'admin del sito, passando il nuovo oggetto Lead
+        Mail::to('info@boolpress.com')->send(new NewLeadMessageMD($new_lead));
 
         return response()->json([
             'success' => true,
-            'message' => 'Il tuo messaggio è stato inviato con successo',
         ]);
-
-
     }
-
 }
