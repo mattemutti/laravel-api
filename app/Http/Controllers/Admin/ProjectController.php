@@ -55,12 +55,9 @@ class ProjectController extends Controller
             //dd($validated, $image_path);
             $validated['cover_image'] = $image_path;
         }
+
         //creiamo
-
-
         $project = Project::create($validated);
-
-
 
         if ($request->has('technologies')) {
             $project->technologies()->attach($validated['technologies']);
